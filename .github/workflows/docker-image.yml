@@ -23,6 +23,6 @@ jobs:
     - name: Build the Docker image
       run: docker build -t silvertetris/densitydata:latest .
     - name: Tag the Docker image
-      run: docker tag silvertetris/harong:latest silvertetris/densitydata:latest
+      run: docker tag silvertetris/densitydata:latest silvertetris/densitydata:latest
     - name: Push the Docker image
       run: docker push silvertetris/densitydata:latest
