@@ -21,8 +21,8 @@ jobs:
 
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build -t silvertetris/densityData:latest .
+      run: docker build -t silvertetris/densitydata:latest .
     - name: Tag the Docker image
-      run: docker tag silvertetris/harong:latest silvertetris/densityData:latest
+      run: docker tag silvertetris/harong:latest silvertetris/densitydata:latest
     - name: Push the Docker image
-      run: docker push silvertetris/densityData:latest
+      run: docker push silvertetris/densitydata:latest
