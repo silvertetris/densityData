@@ -34,6 +34,10 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("com.fasterxml.jackson.core:jackson-databind")
     implementation("com.fasterxml.jackson.core:jackson-core")
+    implementation("org.springframework.boot:spring-boot-starter-web") {
+        exclude(group= "org.springframework.boot", module = "spring-boot-starter-logging")
+    }
+    implementation("io.github.cdimascio:dotenv-java:3.2.0")
 
     //log4j2
     implementation("org.springframework.boot:spring-boot-starter-log4j2")
