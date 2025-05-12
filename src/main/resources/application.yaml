@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: densityData
+
+api-key:
+  tollgate : 4217474942
+  kosis : ${KOSIS_API_TOKEN}
+
