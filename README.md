@@ -10,10 +10,14 @@ jdk-21 or upper version
 ## 사용법
 
 1. .env 파일 생성 후 변수 설정
+- example
+```
+KOSIS_API_TOKEN = your_api_token_here
+```
 
-2. docker-compose.yml 변수 설정 후 실행
+3. docker-compose.yml 변수 설정 후 실행
 
-example
+- example
 ```
 version: "3.8"
 services:
