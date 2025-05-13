@@ -39,6 +39,7 @@ public class KosisSeoulDataExtractionService {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(responseBody);
             File dir = new File("../PopulationData");
+            if (!dir.exists()) dir.mkdirs();
             String fileName = "kosis_populationDensity.json";
             File output = new File(dir, fileName);
             mapper.writerWithDefaultPrettyPrinter().writeValue(output, json);
@@ -58,8 +59,11 @@ public class KosisSeoulDataExtractionService {
             String responseBody = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
             ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(responseBody);
-            File dir = new File("../PopulationData", "kosis_abroadMove.json");
-            mapper.writerWithDefaultPrettyPrinter().writeValue(dir, json);
+            File dir = new File("../PopulationData");
+            if (!dir.exists()) dir.mkdirs();
+            String fileName = "kosis_abroadMove.json";
+            File output = new File(dir, fileName);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(output, json);
             logger.info("[abroadMove] 파일 저장 성공: {}", dir.getName());
         } catch (Exception e) {
             logger.error("[abroadMove] {}", e.getMessage());
@@ -75,26 +79,33 @@ public class KosisSeoulDataExtractionService {
             String responseBody = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
             ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(responseBody);
-            File dir = new File("../PopulationData", "kosis_internalMove.json");
-            mapper.writerWithDefaultPrettyPrinter().writeValue(dir, json);
+            File dir = new File("../PopulationData");
+            if (!dir.exists()) dir.mkdirs();
+            String fileName = "kosis_internalMove.json";
+            File output = new File(dir, fileName);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(output, json);
             logger.info("[internalMove] 파일 저장 성공: {}", dir.getName());
         } catch (Exception e) {
             logger.error("[internalMove] {}", e.getMessage());
         }
     }
+
     public void bornDeath() {
-        try{
-            String url = "https://kosis.kr/openapi/Param/statisticsParameterData.do?method=getList&apiKey="+KOSISApiKey+"&itmId=T1+&objL1=11+&objL2=10+15+&objL3=&objL4=&objL5=&objL6=&objL7=&objL8=&format=json&jsonVD=Y&prdSe=M&newEstPrdCnt=360&orgId=101&tblId=DT_1B8000G";
+        try {
+            String url = "https://kosis.kr/openapi/Param/statisticsParameterData.do?method=getList&apiKey=" + KOSISApiKey + "&itmId=T1+&objL1=11+&objL2=10+15+&objL3=&objL4=&objL5=&objL6=&objL7=&objL8=&format=json&jsonVD=Y&prdSe=M&newEstPrdCnt=360&orgId=101&tblId=DT_1B8000G";
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Type", "application/json");
             HttpEntity<String> entity = new HttpEntity<>(headers);
             String responseBody = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
             ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(responseBody);
-            File dir = new File("../PopulationData", "kosis_bornDeath.json");
-            mapper.writerWithDefaultPrettyPrinter().writeValue(dir, json);
+            File dir = new File("../PopulationData");
+            if(!dir.exists()) dir.mkdirs();
+            String fileName = "kosis_bornDeath.json";
+            File output = new File(dir, fileName);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(output, json);
             logger.info("[bornDeath] 파일 저장 성공: {}", dir.getName());
-        } catch(Exception e) {
+        } catch (Exception e) {
             logger.error("[bornDeath] {}", e.getMessage());
         }
     }

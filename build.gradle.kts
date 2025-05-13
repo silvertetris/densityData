@@ -50,5 +50,5 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 tasks.bootJar {
-    archiveFileName.set("tollgate.jar")
+    archiveFileName.set("densityData.jar")
 }
