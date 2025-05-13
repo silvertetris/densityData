@@ -10,6 +10,8 @@ jdk-21 or upper version
 ## 사용법
 
 1. .env 파일 생성 후 변수 설정
+- download latest release (.jar)
+- create .env file next to .jar
 - example
 ```
 KOSIS_API_TOKEN = your_api_token_here
