@@ -11,6 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import java.io.File;
+
 @SpringBootApplication
 @ComponentScan(basePackages = {"org.example"})
 @EnableScheduling
@@ -25,16 +27,25 @@ public class DensityDataApplication implements CommandLineRunner {
     private static final Logger logger = LogManager.getLogger(DensityDataApplication.class);
 
     public static void main(String[] args) {
-        try{
-            Dotenv dotenv = Dotenv.configure()
-                    .directory("./")
-                    .load();
-            dotenv.entries().forEach(entry ->
-                    System.setProperty(entry.getKey(), entry.getValue())
-            );
-        } catch(Exception e){
-            logger.error("Can't find .env file. If you are running by docker, it is fine to ignore this error.");
+        try {
+            // Check if the .env file exists in the current directory
+            File envFile = new File("./.env");
+
+            if (envFile.exists()) {
+                Dotenv dotenv = Dotenv.configure()
+                        .directory("./")  // Ensure it's pointing to the correct directory
+                        .load();
+
+                dotenv.entries().forEach(entry ->
+                        System.setProperty(entry.getKey(), entry.getValue())
+                );
+            } else {
+                logger.warn(".env file not found, skipping dotenv loading.");
+            }
+        } catch (Exception e) {
+            logger.error("An error occurred while loading .env file, if you are running via Docker, this can be ignored.");
         }
+
 
         SpringApplication.run(DensityDataApplication.class, args);
     }
