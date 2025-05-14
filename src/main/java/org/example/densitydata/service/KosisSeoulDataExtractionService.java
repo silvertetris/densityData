@@ -64,7 +64,7 @@ public class KosisSeoulDataExtractionService {
             String fileName = "kosis_abroadMove.json";
             File output = new File(dir, fileName);
             mapper.writerWithDefaultPrettyPrinter().writeValue(output, json);
-            logger.info("[abroadMove] 파일 저장 성공: {}", dir.getName());
+            logger.info("[abroadMove] 파일 저장 성공: {}", dir.getPath());
         } catch (Exception e) {
             logger.error("[abroadMove] {}", e.getMessage());
         }
