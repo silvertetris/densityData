@@ -31,8 +31,10 @@ services:
       - "8081:8081"
     environment:
       - KOSIS_API_TOKEN=your_api_token_here
-
-
+```
+execute
+```
+!docker-compose up -d --pull always
 ```
 
 ## environment
