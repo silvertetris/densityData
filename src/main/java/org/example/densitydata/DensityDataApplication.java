@@ -1,6 +1,8 @@
 package org.example.densitydata;
 
 import io.github.cdimascio.dotenv.Dotenv;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.densitydata.service.KosisSeoulDataExtractionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,13 +22,20 @@ public class DensityDataApplication implements CommandLineRunner {
         this.kosisSeoulDataExtractionService = kosisSeoulDataExtractionService;
     }
 
+    private static final Logger logger = LogManager.getLogger(DensityDataApplication.class);
+
     public static void main(String[] args) {
-        Dotenv dotenv = Dotenv.configure()
-                .directory("./")
-                .load();
-        dotenv.entries().forEach(entry ->
-                System.setProperty(entry.getKey(), entry.getValue())
-        );
+        try{
+            Dotenv dotenv = Dotenv.configure()
+                    .directory("./")
+                    .load();
+            dotenv.entries().forEach(entry ->
+                    System.setProperty(entry.getKey(), entry.getValue())
+            );
+        } catch(Exception e){
+            logger.error("Can't find .env file. If you are running by docker, it is fine to ignore this error.");
+        }
+
         SpringApplication.run(DensityDataApplication.class, args);
     }
 
