@@ -12,6 +12,7 @@ jdk-21 or upper version
 1. .env 파일 생성 후 변수 설정
 - download latest release (.jar)
 - create .env file next to .jar
+- execute: java -jar densityData.jar
 - example
 ```
 KOSIS_API_TOKEN = your_api_token_here
@@ -21,22 +22,20 @@ KOSIS_API_TOKEN = your_api_token_here
 
 - example
 ```
-version: "3.8"
 services:
-  myapp:
+  densitydata:
     container_name: densitydata
     image: silvertetris/densitydata:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
+    restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
       - KOSIS_API_TOKEN=your_api_token_here
+
 
 ```
 
 ## environment
 ```
-KOSIS_API_TOKEN
+KOSIS_API_TOKEN = #kosis_api_token_here
 ```
