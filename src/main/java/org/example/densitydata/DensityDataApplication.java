@@ -36,5 +36,6 @@ public class DensityDataApplication implements CommandLineRunner {
         kosisSeoulDataExtractionService.abroadMove();
         kosisSeoulDataExtractionService.internalMove();
         kosisSeoulDataExtractionService.bornDeath();
+        kosisSeoulDataExtractionService.grdp();
     }
 }
