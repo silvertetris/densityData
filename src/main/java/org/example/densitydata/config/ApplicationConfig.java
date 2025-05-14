@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class ApplicationConfig {
-    @Bean
+    @Bean //dependency injection 용 restTemplate bean 처리
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
