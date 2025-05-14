@@ -57,7 +57,7 @@ public class TollgateDataExtractionService {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(response.body());
-            File dir = new File("../PopulationData");
+            File dir = new File("./PopulationData");
             if (!dir.exists()) dir.mkdirs();
             String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
             String fileName = "tollgateDataSet_" +now+ ".json";
