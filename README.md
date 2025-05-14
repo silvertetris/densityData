@@ -12,6 +12,7 @@ jdk-21 or upper version
 1. .env 파일 생성 후 변수 설정
 - download latest release (.jar)
 - create .env file next to .jar
+- execute: java -jar densityData.jar
 - example
 ```
 KOSIS_API_TOKEN = your_api_token_here
@@ -38,5 +39,5 @@ services:
 
 ## environment
 ```
-KOSIS_API_TOKEN
+KOSIS_API_TOKEN = #kosis_api_token_here
 ```
