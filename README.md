@@ -22,18 +22,16 @@ KOSIS_API_TOKEN = your_api_token_here
 
 - example
 ```
-version: "3.8"
 services:
-  myapp:
+  densitydata:
     container_name: densitydata
     image: silvertetris/densitydata:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
+    restart: unless-stopped
     ports:
       - "8081:8081"
     environment:
       - KOSIS_API_TOKEN=your_api_token_here
+
 
 ```
 
