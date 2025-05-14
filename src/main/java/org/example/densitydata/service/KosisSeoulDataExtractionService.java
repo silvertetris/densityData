@@ -38,7 +38,7 @@ public class KosisSeoulDataExtractionService {
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(responseBody);
-            File dir = new File("../PopulationData");
+            File dir = new File("./PopulationData");
             if (!dir.exists()) dir.mkdirs();
             String fileName = "kosis_populationDensity.json";
             File output = new File(dir, fileName);
@@ -59,7 +59,7 @@ public class KosisSeoulDataExtractionService {
             String responseBody = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
             ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(responseBody);
-            File dir = new File("../PopulationData");
+            File dir = new File("./PopulationData");
             if (!dir.exists()) dir.mkdirs();
             String fileName = "kosis_abroadMove.json";
             File output = new File(dir, fileName);
@@ -79,7 +79,7 @@ public class KosisSeoulDataExtractionService {
             String responseBody = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
             ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(responseBody);
-            File dir = new File("../PopulationData");
+            File dir = new File("./PopulationData");
             if (!dir.exists()) dir.mkdirs();
             String fileName = "kosis_internalMove.json";
             File output = new File(dir, fileName);
@@ -99,7 +99,7 @@ public class KosisSeoulDataExtractionService {
             String responseBody = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
             ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(responseBody);
-            File dir = new File("../PopulationData");
+            File dir = new File("./PopulationData");
             if(!dir.exists()) dir.mkdirs();
             String fileName = "kosis_bornDeath.json";
             File output = new File(dir, fileName);
@@ -107,6 +107,25 @@ public class KosisSeoulDataExtractionService {
             logger.info("[bornDeath] 파일 저장 성공: {}", dir.getName());
         } catch (Exception e) {
             logger.error("[bornDeath] {}", e.getMessage());
+        }
+    }
+    public void grdp() {
+        try{
+            String url = "https://kosis.kr/openapi/Param/statisticsParameterData.do?method=getList&apiKey="+KOSISApiKey+ "&itmId=T1+T2+T3+&objL1=11+&objL2=Z10+&objL3=&objL4=&objL5=&objL6=&objL7=&objL8=&format=json&jsonVD=Y&prdSe=Y&newEstPrdCnt=30&orgId=101&tblId=DT_1C81";
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json");
+            HttpEntity<String> entity = new HttpEntity<>(headers);
+            String responseBody = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode json = mapper.readTree(responseBody);
+            File dir = new File("./PopulationData");
+            if(!dir.exists()) dir.mkdirs();
+            String fileName = "kosis_grdp.json";
+            File output = new File(dir, fileName);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(output, json);
+            logger.info("[grdp] 파일 저장 성공: {}", dir.getName());
+        } catch (Exception e) {
+            logger.error("[grdp] {}", e.getMessage());
         }
     }
 }
