@@ -18,7 +18,7 @@ jdk-21 or upper version
 KOSIS_API_TOKEN = your_api_token_here
 ```
 
-2. docker-compose.yml 변수 설정 후 실행
+2. docker-compose.yml 변수 설정 후 실행 (not working currently)
 
 - example
 ```
