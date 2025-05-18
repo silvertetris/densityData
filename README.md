@@ -13,14 +13,14 @@ jdk-21 or upper version
 - download latest release (.jar)
 - create .env file next to .jar
 - execute: java -jar densityData.jar
-- example
+- example (.env)
 ```
 KOSIS_API_TOKEN = your_api_token_here
 ```
 
 2. docker-compose.yml 변수 설정 후 실행 (not working currently)
 
-- example
+- example (docker-compose.yml)
 ```
 services:
   densitydata:
@@ -32,7 +32,7 @@ services:
     environment:
       - KOSIS_API_TOKEN=your_api_token_here
 ```
-execute
+- execute
 ```
 !docker-compose up -d --pull always
 ```
@@ -41,3 +41,15 @@ execute
 ```
 KOSIS_API_TOKEN = #kosis_api_token_here
 ```
+
+## OUTPUT
+1. ./ 경로에 PopulationData 파일 생성
+2. 5개의 파일 생성됨 (서울시 데이터)
+- kosis_abroadMove.json : 해외 이민 순이동 (연도별)
+- kosis_bornDeath.json : 출생, 사망자 수 (연도별)
+- kosis_grdp.json :  지역내총생산 (연도별)
+- kosis_internalMove : 지역내 순전입.전출자 수 (월별)
+- kosis_populationDensity.json : 인구밀도 (연도별)
+3. 데이터에 따른 출력 변수는 아래 링크 참조
+
+  https://kosis.kr/openapi/devGuide/devGuide_0201List.do
