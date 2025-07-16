@@ -33,7 +33,6 @@ public class CountyDataExtractionService {
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         String responseBody = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
-        logger.info("[CountyDataExtractionService] 응답 body: {}", responseBody);
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(responseBody);
@@ -55,7 +54,6 @@ public class CountyDataExtractionService {
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         String responseBody = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
-        logger.info("[CountyDataExtractionService] 응답 body: {}", responseBody);
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(responseBody);
@@ -77,7 +75,6 @@ public class CountyDataExtractionService {
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         String responseBody = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
-        logger.info("[CountyDataExtractionService] 응답 body: {}", responseBody);
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(responseBody);
@@ -99,7 +96,6 @@ public class CountyDataExtractionService {
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         String responseBody = restTemplate.exchange(url, HttpMethod.GET, entity, String.class).getBody();
-        logger.info("[CountyDataExtractionService] 응답 body: {}", responseBody);
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(responseBody);
