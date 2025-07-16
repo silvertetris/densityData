@@ -1,4 +1,4 @@
-package org.example.densitydata.service.Scheduler;
+package org.example.densitydata.service.scheduler;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
