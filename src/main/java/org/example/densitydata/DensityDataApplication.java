@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.densitydata.service.KosisSeoulDataExtractionService;
 import org.example.densitydata.service.eachCountyData.CountyDataExtractionService;
+import org.example.densitydata.service.townScaleData.SeoulTownScaleDataExtractionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,11 +21,13 @@ import java.io.File;
 public class DensityDataApplication implements CommandLineRunner {
     private final KosisSeoulDataExtractionService kosisSeoulDataExtractionService;
     private final CountyDataExtractionService countyDataExtractionService;
+    private final SeoulTownScaleDataExtractionService seoulTownScaleDataExtractionService;
 
     @Autowired
-    public DensityDataApplication(KosisSeoulDataExtractionService kosisSeoulDataExtractionService, CountyDataExtractionService countyDataExtractionService) {
+    public DensityDataApplication(KosisSeoulDataExtractionService kosisSeoulDataExtractionService, CountyDataExtractionService countyDataExtractionService, SeoulTownScaleDataExtractionService seoulTownScaleDataExtractionService) {
         this.kosisSeoulDataExtractionService = kosisSeoulDataExtractionService;
         this.countyDataExtractionService = countyDataExtractionService;
+        this.seoulTownScaleDataExtractionService = seoulTownScaleDataExtractionService;
     }
 
     private static final Logger logger = LogManager.getLogger(DensityDataApplication.class);
@@ -54,7 +57,7 @@ public class DensityDataApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         kosisSeoulDataExtractionService.populationDensity();
         kosisSeoulDataExtractionService.abroadMove();
         kosisSeoulDataExtractionService.internalMove();
@@ -64,5 +67,6 @@ public class DensityDataApplication implements CommandLineRunner {
         countyDataExtractionService.deathData();
         countyDataExtractionService.moveData();
         countyDataExtractionService.populationData();
+        seoulTownScaleDataExtractionService.populationData();
     }
 }
